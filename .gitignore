@@ -1,0 +1,11 @@
+.gocache/
+dist/
+build/
+humanspeak.exe
+native_output/
+giant_output/
+packages/
+pkgdemo/
+native_app_test/
+*.log
+*.tmp

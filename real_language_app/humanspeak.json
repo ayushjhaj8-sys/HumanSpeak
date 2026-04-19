@@ -1,0 +1,6 @@
+{
+  "name": "real-language-app",
+  "language": "HumanSpeak",
+  "entry": "main.hs",
+  "version": "18.0.0-beta"
+}

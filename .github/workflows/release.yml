@@ -1,0 +1,24 @@
+name: release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.26"
+      - name: Build release bundle
+        shell: powershell
+        run: |
+          $env:GOCACHE = Join-Path $PWD '.gocache'
+          & .\scripts\package_release.ps1
+      - name: Upload release asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/humanspeak-windows-x64.zip
