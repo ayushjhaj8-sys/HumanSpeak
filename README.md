@@ -1,65 +1,31 @@
-# HumanSpeak Native
+# HumanSpeak
 
-This is a real standalone HumanSpeak runtime written in Go.
+HumanSpeak is a native, readable programming language with no Python dependency at runtime.
 
-Goals:
-- no Python dependency
-- keep HumanSpeak readable
-- support the original syntax and shorter aliases
-- grow toward apps, AI systems, websites, and larger software
+It is built for people who want code that feels natural, but still works for real software:
+- apps
+- websites
+- data tools
+- AI workflows
+- scripts and automation
 
-Current native features:
-- `say`, `print`, `show`, `p`
-- `remember x as y`, `let x be y`
-- typed assignments like `remember age as number 21` and `let name be text "Ayush"`
-- `export remember ...`, `export task ...`
-- `export make a class called ...`
-- `change x to y`
-- `add x to y`
-- `subtract x from y`
-- `remove x from list`
-- `ask ... and remember it as ...`
-- local `use "module.hs"` imports
-- `use "module.hs" as tools`
-- `from "module.hs" import square, cube`
-- `make a map called ... with "key" as value`
-- `set "key" in map to value`
-- `make a class called ...`
-- `make an object called ... as ClassName with ...`
-- `method greet using ...`
-- `list heroes with ...`
-- `repeat`
-- `keep doing ... until ...`
-- `for i in range 1 to 10 step by 1`
-- `for each`
-- `if / otherwise / end`
-- `task / do / give back`
-- `try / catch / finally`
-- `throw` / `raise`
-- `spawn` / `wait for`
-- `serve on port ... using ...`
-- `wait`
-- `open file ... and remember it as ...`
-- `save ... to file ...`
-- `run command`
-- built-in modules: `math`, `text`, `files`, `time`, `data`, `system`
-- network helpers: `web get`, `web download`
-- HTTP server runtime
-- REPL
-- project scaffolding
-- project commands: `check`, `test`, `build`
-- toolchain commands: `fmt`, `lint`
-- package commands: `package init`, `package add`, `package list`
+## What it can do
 
-Real project example:
-- [real_language_app/main.hs](C:\Users\ayush\Documents\Codex\2026-04-19-files-mentioned-by-the-user-humanspeak\real_language_app\main.hs)
-- [real_language_app/math_tools.hs](C:\Users\ayush\Documents\Codex\2026-04-19-files-mentioned-by-the-user-humanspeak\real_language_app\math_tools.hs)
-- [real_language_app/tests/math_test.hs](C:\Users\ayush\Documents\Codex\2026-04-19-files-mentioned-by-the-user-humanspeak\real_language_app\tests\math_test.hs)
+- print text with `say`, `print`, `show`, or `p`
+- store values with `remember` and `let`
+- use typed values like `remember age as number 21`
+- work with lists, maps, objects, and classes
+- create tasks with `task` and `do`
+- handle errors with `try`, `catch`, and `finally`
+- run background work with `spawn` and `wait for`
+- serve web apps with `serve on port ... using ...`
+- read and write files
+- import local HumanSpeak modules
+- use project commands like `check`, `test`, `build`, `fmt`, and `lint`
 
-Teaching guide:
-- [HumanSpeak_Beginner_to_Advanced_Guide.pdf](C:\Users\ayush\Documents\Codex\2026-04-19-files-mentioned-by-the-user-humanspeak\HumanSpeak_Beginner_to_Advanced_Guide.pdf)
+## Install
 
-Install on Windows:
+### Windows
 
 1. Open PowerShell.
 2. Run:
@@ -75,7 +41,7 @@ powershell -ExecutionPolicy Bypass -File .\install.ps1
 humanspeak.exe version
 ```
 
-Install on macOS or Linux:
+### macOS and Linux
 
 1. Open Terminal.
 2. Run:
@@ -91,42 +57,30 @@ curl -fsSL https://raw.githubusercontent.com/ayushjhaj8-sys/HumanSpeak/main/inst
 humanspeak version
 ```
 
-Install from source on any machine with Git and Go:
+### Build from source
 
-1. Clone the repo.
-2. Build the binary.
-3. Run the resulting `humanspeak` executable.
+If you have Git and Go installed:
 
-```powershell
+```bash
 git clone https://github.com/ayushjhaj8-sys/HumanSpeak.git
 cd HumanSpeak
-go build -o humanspeak.exe .\cmd\humanspeak
-.\humanspeak.exe version
+go build -o humanspeak ./cmd/humanspeak
 ```
 
-Release packaging:
+## Guides
 
-```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\package_release.ps1
-```
+- Beginner to advanced PDF guide: [HumanSpeak_Beginner_to_Advanced_Guide.pdf](HumanSpeak_Beginner_to_Advanced_Guide.pdf)
 
-Build:
+## Release files
 
-```powershell
-& "C:\Program Files\Go\bin\go.exe" build -o humanspeak.exe .\cmd\humanspeak
-```
+- Windows install: `install.ps1`
+- macOS/Linux install: `install.sh`
+- Release bundles: GitHub Releases
 
-Run:
+## Example
 
-```powershell
-.\humanspeak.exe run .\examples\native_demo.hs
-```
-
-This is now a stronger beta-level native runtime. It is still not the final ceiling of HumanSpeak, but it is beyond a thin alpha shell and is ready to grow into packages, web runtimes, AI connectors, app tooling, and a richer type system.
-
-Tooling examples:
-
-```powershell
-.\humanspeak.exe fmt .\real_language_app
-.\humanspeak.exe lint .\real_language_app
+```hs
+say "Hello from HumanSpeak"
+remember name as "Ayush"
+say "Welcome, " + name
 ```
