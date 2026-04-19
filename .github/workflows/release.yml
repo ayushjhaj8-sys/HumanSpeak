@@ -7,18 +7,54 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - goos: windows
+            goarch: amd64
+            asset: humanspeak-windows-x64.zip
+            binary: humanspeak.exe
+            archive: zip
+          - goos: linux
+            goarch: amd64
+            asset: humanspeak-linux-x64.tar.gz
+            binary: humanspeak
+            archive: tar.gz
+          - goos: linux
+            goarch: arm64
+            asset: humanspeak-linux-arm64.tar.gz
+            binary: humanspeak
+            archive: tar.gz
+          - goos: darwin
+            goarch: amd64
+            asset: humanspeak-macos-x64.tar.gz
+            binary: humanspeak
+            archive: tar.gz
+          - goos: darwin
+            goarch: arm64
+            asset: humanspeak-macos-arm64.tar.gz
+            binary: humanspeak
+            archive: tar.gz
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
         with:
           go-version: "1.26"
       - name: Build release bundle
-        shell: powershell
+        shell: bash
         run: |
-          $env:GOCACHE = Join-Path $PWD '.gocache'
-          & .\scripts\package_release.ps1
+          set -euo pipefail
+          mkdir -p dist/release
+          GOOS=${{ matrix.goos }} GOARCH=${{ matrix.goarch }} CGO_ENABLED=0 go build -o "dist/release/${{ matrix.binary }}" ./cmd/humanspeak
+          cp README.md HumanSpeak_Beginner_to_Advanced_Guide.pdf install.ps1 install.sh dist/release/ 2>/dev/null || true
+          if [ "${{ matrix.archive }}" = "zip" ]; then
+            (cd dist/release && zip -r "../${{ matrix.asset }}" .)
+          else
+            (cd dist/release && tar -czf "../${{ matrix.asset }}" .)
+          fi
       - name: Upload release asset
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/humanspeak-windows-x64.zip
+          files: dist/${{ matrix.asset }}

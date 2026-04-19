@@ -75,6 +75,22 @@ powershell -ExecutionPolicy Bypass -File .\install.ps1
 humanspeak.exe version
 ```
 
+Install on macOS or Linux:
+
+1. Open Terminal.
+2. Run:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/ayushjhaj8-sys/HumanSpeak/main/install.sh | bash
+```
+
+3. Restart Terminal.
+4. Run:
+
+```bash
+humanspeak version
+```
+
 Install from source on any machine with Git and Go:
 
 1. Clone the repo.
