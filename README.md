@@ -62,7 +62,7 @@ Teaching guide:
 Install like a native tool:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\install.ps1 -Repository YOUR_GITHUB_USER/HumanSpeak
+powershell -ExecutionPolicy Bypass -File .\install.ps1
 ```
 
 Release packaging:

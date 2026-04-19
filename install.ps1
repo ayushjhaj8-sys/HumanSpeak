@@ -1,5 +1,5 @@
 param(
-    [string]$Repository = "YOUR_GITHUB_USER/HumanSpeak",
+    [string]$Repository = "ayushjhaj8-sys/HumanSpeak",
     [string]$InstallDir = (Join-Path $env:LOCALAPPDATA "HumanSpeak")
 )
 
