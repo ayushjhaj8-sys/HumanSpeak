@@ -59,10 +59,33 @@ Real project example:
 Teaching guide:
 - [HumanSpeak_Beginner_to_Advanced_Guide.pdf](C:\Users\ayush\Documents\Codex\2026-04-19-files-mentioned-by-the-user-humanspeak\HumanSpeak_Beginner_to_Advanced_Guide.pdf)
 
-Install like a native tool:
+Install on Windows:
+
+1. Open PowerShell.
+2. Run:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\install.ps1
+```
+
+3. Restart PowerShell or Windows Terminal.
+4. Run:
+
+```powershell
+humanspeak.exe version
+```
+
+Install from source on any machine with Git and Go:
+
+1. Clone the repo.
+2. Build the binary.
+3. Run the resulting `humanspeak` executable.
+
+```powershell
+git clone https://github.com/ayushjhaj8-sys/HumanSpeak.git
+cd HumanSpeak
+go build -o humanspeak.exe .\cmd\humanspeak
+.\humanspeak.exe version
 ```
 
 Release packaging:
