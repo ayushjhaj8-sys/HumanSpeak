@@ -8,6 +8,10 @@ os="$(uname -s | tr '[:upper:]' '[:lower:]')"
 arch="$(uname -m)"
 
 case "$os" in
+  mingw*|msys*|cygwin*)
+    asset="humanspeak-windows-x64.zip"
+    windows_like="yes"
+    ;;
   darwin)
     if [[ "$arch" == "arm64" ]]; then
       asset="humanspeak-macos-arm64.tar.gz"
@@ -41,11 +45,16 @@ else
   wget -q "$url" -O "$archive"
 fi
 
-tar -xzf "$archive" -C "$tmpdir"
-
-if [[ "$os" == "darwin" || "$os" == "linux" ]]; then
-  bin_name="humanspeak"
+if [[ "${windows_like:-no}" == "yes" ]]; then
+  if command -v unzip >/dev/null 2>&1; then
+    unzip -q "$archive" -d "$tmpdir"
+  else
+    echo "Installation failed: unzip is required for Windows shell installs."
+    exit 1
+  fi
+  bin_name="humanspeak.exe"
 else
+  tar -xzf "$archive" -C "$tmpdir"
   bin_name="humanspeak"
 fi
 
